@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.oh.week9.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:onClick="onClick"
+            android:id="@+id/checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="가격 보이기"
+            android:layout_weight="9" />
+
+        <Button
+            android:onClick="onClick"
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ff9100"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:text="카트보기" />
+
+    </LinearLayout>
+
+    <GridView
+        android:numColumns="2"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:id="@+id/gridView"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_weight="1">
+
+    </GridView>
+
+    <com.example.oh.week9.AddFruit
+        android:layout_gravity="center"
+        android:id="@+id/addfruit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.example.oh.week9.AddFruit>
+</LinearLayout>
