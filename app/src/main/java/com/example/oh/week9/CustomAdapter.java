@@ -1,7 +1,6 @@
 package com.example.oh.week9;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +54,9 @@ public class CustomAdapter extends BaseAdapter {
             price.setVisibility(View.INVISIBLE);
         else
             price.setVisibility(View.VISIBLE);
-
         return convertView;
+    }
+    public void setItem (int position, FruitData data){
+        fruitDatas.set(position, data);
     }
 }

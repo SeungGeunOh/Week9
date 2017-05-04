@@ -16,12 +16,13 @@ import android.widget.LinearLayout;
  */
 
 public class AddFruit extends LinearLayout implements View.OnClickListener{
-    int num = 0;
+    static int num = 0;
     AutoCompleteTextView eName;
     EditText ePrice;
     ImageView img;
     Button b_next;
     Button b_add;
+
 
     public AddFruit(Context context){
         this(context, null);
@@ -63,9 +64,15 @@ public class AddFruit extends LinearLayout implements View.OnClickListener{
                 MainActivity.imageNum = MainActivity.fImage[num];
                 break;
             case R.id.b_add :
-                if (b_add.getText() == "M")
+                if (MainActivity.imageNum == 0)
+                    MainActivity.imageNum = MainActivity.fImage[0];
+
+                if (b_add.getText() == "M") {
                     b_add.setText("ADD");
-                onAddListener.onAdd(eName.getText().toString(), ePrice.getText().toString(), MainActivity.imageNum);
+                    onChangeListener.onChange(eName.getText().toString(), ePrice.getText().toString(), MainActivity.imageNum);
+                }
+                else
+                    onAddListener.onAdd(eName.getText().toString(), ePrice.getText().toString(), MainActivity.imageNum);
                 break;
         }
     }
@@ -79,4 +86,12 @@ public class AddFruit extends LinearLayout implements View.OnClickListener{
     public void setOnAddListener(OnAddListener onAddListener){
         this.onAddListener = onAddListener;
     }
+
+    interface OnChangeListener{
+        void onChange(String name, String price, int image);
+    }
+    public OnChangeListener onChangeListener;
+
+    public void setOnChangeListner(OnChangeListener onChangeListener) { this.onChangeListener = onChangeListener;}
+
 }

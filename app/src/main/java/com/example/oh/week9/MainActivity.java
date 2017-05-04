@@ -27,23 +27,29 @@ public class MainActivity extends AppCompatActivity {
     AddFruit addFruit;
     CheckBox checkBox;
 
+    String sName;
+    String sPrice;
+    int sImage;
+    int index;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         gridView = (GridView)findViewById(R.id.gridView);
         checkBox = (CheckBox)findViewById(R.id.checkBox);
 
         gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), fruitDatas.get(position).fName, Toast.LENGTH_SHORT).show();
-                addFruit.setFruit(fruitDatas.get(position).fName,
-                        fruitDatas.get(position).fPrice,
-                        fruitDatas.get(position).fImage,
-                        position);
+                sName = fruitDatas.get(position).fName;
+                sPrice = fruitDatas.get(position).fPrice;
+                sImage = fruitDatas.get(position).fImage;
+
+                addFruit.setFruit(sName, sPrice, sImage, position);
                 imageNum = fruitDatas.get(position).fImage;
                 cart.add(fruitDatas.get(position).fName);
+
             }
         });
         init();
@@ -56,12 +62,21 @@ public class MainActivity extends AppCompatActivity {
         gridView.setAdapter(adapter);
 
         addFruit = (AddFruit)findViewById(R.id.addfruit);
+
         addFruit.setOnAddListener(new AddFruit.OnAddListener() {
             @Override
             public void onAdd(String name, String price, int imgnum) {
                 imageNum = imgnum;
                 fruitDatas.add(new FruitData(name, price, imgnum));
                 gridView.setAdapter(adapter);
+            }
+        });
+
+        addFruit.setOnChangeListner(new AddFruit.OnChangeListener() {
+            @Override
+            public void onChange(String name, String price, int image) {
+                adapter.setItem(index, new FruitData(name, price, image));
+                adapter.notifyDataSetChanged();
             }
         });
     }
