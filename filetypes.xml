@@ -3,6 +3,7 @@
     <extensionMap>
       <mapping pattern="img" type="PLAIN_TEXT" />
       <mapping pattern="Menu" type="PLAIN_TEXT" />
+      <mapping pattern="raw" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>
